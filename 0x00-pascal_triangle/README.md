@@ -1,0 +1,1 @@
+In this directory we are going to be creating a python function that represents a pascal's triangle.
