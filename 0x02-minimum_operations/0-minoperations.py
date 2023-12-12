@@ -11,13 +11,10 @@ def minOperations(n):
     if n < 2:
         return 0
 
-    factor_list = []
-    for i in range(2, int(n**0.5) + 1):
+    min_ops = 0
+    for i in range(2, n + 1):
         while n % i == 0:
-            factor_list.append(i)
+            min_ops += i
             n //= i
 
-    if n > 1:
-        factor_list.append(n)
-
-    return sum(factor_list)
+    return min_ops
