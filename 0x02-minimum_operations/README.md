@@ -1,0 +1,1 @@
+In this directory we are going to be creating a function that calculates the fewest number of operations needed to achieve exactly n characters 'H' in a text file.
