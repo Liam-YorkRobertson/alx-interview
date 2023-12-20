@@ -1,0 +1,1 @@
+In this directory we are goign to be craeting a python script that reads stdin line by line and computes metrics.
