@@ -9,7 +9,7 @@ def process_logs():
     """
     function that does log parsing
     """
-    total_size, status_counts = 0
+    total_size = 0
     status_counts = defaultdict(int)
 
     try:
