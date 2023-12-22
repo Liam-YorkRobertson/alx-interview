@@ -48,10 +48,11 @@ def parse_logs():
                 log["code_frequency"][code] += code.isdecimal()
                 if line_count % 10 == 0:
                     display_statistics(log)
-    except KeyboardInterrupt:
-        pass
     finally:
-        display_statistics(log)
+        try:
+            display_statistics(log)
+        except KeyboardInterrupt:
+            pass
 
 
 if __name__ == "__main__":
