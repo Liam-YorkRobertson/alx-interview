@@ -1,12 +1,15 @@
 #!/usr/bin/python3
-""" doc """
+"""
+UTF-8 validation function
+"""
 
 
 def validUTF8(data):
-    """ doc """
+    """
+    determines if a given data set represents a valid UTF-8 encoding
+    """
     try:
-        maskeddata = [n & 255 for n in data]
-        bytes(maskeddata).decode("UTF-8")
+        bytes(data).decode("UTF-8", errors="strict")
         return True
-    except Exception:
+    except (UnicodeDecodeError, ValueError):
         return False
