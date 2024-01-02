@@ -11,8 +11,10 @@ def validUTF8(data):
     bits_count = 0
     for num in data:
         if bits_count == 0:
-            while (num & (1 << (7 - bits_count))) != 0:
+            mask = 1 << 7
+            while (num & mask) != 0:
                 bits_count += 1
+                mask >>= 1
             if bits_count == 1 or bits_count > 4 or (num & 128) != 0:
                 return False
             continue
