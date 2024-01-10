@@ -25,7 +25,7 @@ def main():
     main function
     """
     if len(sys.argv) != 2:
-        print("Usage: ./0-nqueens.py N")
+        print("Usage: nqueens N")
         sys.exit(1)
     try:
         n = int(sys.argv[1])
