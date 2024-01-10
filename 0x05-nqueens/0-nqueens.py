@@ -5,19 +5,19 @@ solves nqueens problem
 import sys
 
 
-def solve_nqueens(board, row, n):
+def nqueens(n, row, board):
     """
     checks if queen can be placed in the position
     """
     if row == n:
-        print([list(pair) for pair in enumerate(board)])
+        print([list(pair) for pair in board])
     else:
         for col in range(n):
-            if all(board[i] != col and
-                   board[i] - i != col - row and
-                   board[i] + i != col + row
+            if all(board[i][1] != col and
+                   board[i][1] - i != col - row and
+                   board[i][1] + i != col + row
                    for i in range(row)):
-                solve_nqueens(board + [col], row + 1, n)
+                nqueens(n, row + 1, board + [(row, col)])
 
 
 def main():
@@ -35,8 +35,7 @@ def main():
     if n < 4:
         print("N must be at least 4")
         sys.exit(1)
-    solve_nqueens([], 0, n)
-
+    nqueens(n, 0, [])
 
 if __name__ == "__main__":
     main()
