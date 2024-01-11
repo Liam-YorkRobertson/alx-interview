@@ -20,10 +20,7 @@ def nqueens(board, row, n):
                 nqueens(board + [col], row + 1, n)
 
 
-def main():
-    """
-    main function
-    """
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
@@ -36,7 +33,3 @@ def main():
         print("N must be at least 4")
         sys.exit(1)
     nqueens([], 0, n)
-
-
-if __name__ == "__main__":
-    main()
