@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-solve nqueens problem
+solves nqueens problem
 """
 import sys
 
