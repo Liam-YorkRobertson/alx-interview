@@ -2,26 +2,19 @@
 
 const request = require('request');
 
-const req = (arr, i) => {
-  if (i === arr.length) return;
-  request(arr[i], (err, response, body) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log(JSON.parse(body).name);
-      req(arr, i + 1);
-    }
+const fetchCharacterName = (characterUrl) => new Promise((resolve, reject) => {
+  request(characterUrl, (err, response, body) => {
+    if (err) reject(err);
+    else resolve(JSON.parse(body).name);
   });
-};
+});
 
-request(
-  `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,
-  (err, response, body) => {
-    if (err) {
-      throw err;
-    } else {
-      const chars = JSON.parse(body).characters;
-      req(chars, 0);
-    }
-  }
-);
+const filmId = process.argv[2];
+
+request(`https://swapi-api.hbtn.io/api/films/${filmId}`, (err, response, body) => {
+  if (err) return;
+
+  Promise.all(JSON.parse(body).characters.map(fetchCharacterName))
+    .then((characterNames) => characterNames.forEach(console.log))
+    .catch(() => {});
+});
