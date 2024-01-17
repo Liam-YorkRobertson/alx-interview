@@ -12,9 +12,9 @@ const fetchCharacterName = (characterUrl) => new Promise((resolve, reject) => {
 const filmId = process.argv[2];
 
 request(`https://swapi-api.hbtn.io/api/films/${filmId}`, (err, response, body) => {
-  if (err) return;
-
-  Promise.all(JSON.parse(body).characters.map(fetchCharacterName))
-    .then((characterNames) => characterNames.forEach(console.log))
-    .catch(() => {});
+  if (err) process.exit(1);
+  const characters = JSON.parse(body).characters;
+  characters.reduce((prevPromise, characterUrl) => {
+    return prevPromise.then(() => fetchCharacterName(characterUrl).then(console.log));
+  }, Promise.resolve());
 });
