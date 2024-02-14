@@ -5,6 +5,9 @@ get winner of prime number game
 
 
 def isWinner(x, nums):
+    """
+    determines winner
+    """
     m_wins = 0
 
     for n in nums:
